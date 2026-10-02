@@ -457,15 +457,19 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function resizeGame() {
 	let gameContainer = document.getElementById("gameContainer");
+	let game = document.querySelector(".all");
 
 	let scale = Math.min(
 		1,
-		window.innerWidth / 1000
+		window.innerWidth / 1000,
+		window.innerHeight / 650
 	);
 
-	gameContainer.style.zoom = scale;
+	game.style.transform = "scale(" + scale + ")";
+
+	gameContainer.style.width = (1000 * scale) + "px";
+	gameContainer.style.height = (650 * scale) + "px";
 }
 
 window.addEventListener("resize", resizeGame);
-
 resizeGame();
