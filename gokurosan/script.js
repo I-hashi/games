@@ -477,11 +477,13 @@ function resizeGame() {
 	let scale = Math.min(scaleX, scaleY);
 
 	game.style.transform = "scale(" + scale + ")";
-	game.style.marginLeft = margin + "px";
-	game.style.marginTop = margin + "px";
+	game.style.transformOrigin = "top left";
 
-	gameContainer.style.width = (1800 * scale + margin * 2) + "px";
-	gameContainer.style.height = (900 * scale + margin * 2) + "px";
+	gameContainer.style.width = (1800 * scale) + "px";
+	gameContainer.style.height = (900 * scale) + "px";
+
+	gameContainer.style.marginLeft = margin + "px";
+	gameContainer.style.marginTop = margin + "px";
 }
 
 window.addEventListener("resize", resizeGame);
