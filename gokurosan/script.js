@@ -474,19 +474,4 @@ function resizeGame() {
 
 	gameContainer.style.width = (1600 * scale) + "px";
 	gameContainer.style.height = (900 * scale) + "px";
-
-	// 山札の位置を現在の画面に合わせ直す
-	if (yamafuda) {
-		let deckRect = cards.getBoundingClientRect();
-
-		yamafuda.forEach(function(card, i) {
-			if (card.style.visibility !== "hidden") {
-				let x = deckRect.left + (i % 27) * 30;
-				let y = deckRect.top + Math.floor((i + 1) / 28) * 200;
-
-				card.style.left = x + "px";
-				card.style.top = y + "px";
-			}
-		});
-	}
 }
