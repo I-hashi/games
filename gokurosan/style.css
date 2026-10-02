@@ -31,6 +31,10 @@ html, body {
 .pera {
 	background-color: gray;
 	color: black;
+	width: 200px;
+	height: 80px;
+	font-size: 15px;
+	border-radius: 15px;
 }
 
 #yamafuda{
