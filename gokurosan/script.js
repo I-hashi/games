@@ -67,8 +67,13 @@ function makeYamafuda() {
 			setTimeout(function() {
 				card.style.visibility = "visible";
 				card.style.transition = "left 0.8s ease, top 0.8s ease";
-				card.style.left = endX + "px";
-				card.style.top = endY + "px";
+				let deckRect = cards.getBoundingClientRect();
+
+				let newX = deckRect.left + (i % 27) * 30;
+				let newY = deckRect.top + Math.floor((i + 1) / 28) * 200;
+
+				card.style.left = newX + "px";
+				card.style.top = newY + "px";
 				if (i === 53) {
 					playingcards.style.visibility = "hidden";
 					setTimeout(function() {
@@ -468,8 +473,19 @@ function resizeGame() {
 
 	gameContainer.style.width = (1600 * scale) + "px";
 	gameContainer.style.height = (900 * scale) + "px";
+
+	// 山札の位置を現在の画面に合わせ直す
+	if (yamafuda) {
+		let deckRect = cards.getBoundingClientRect();
+
+		yamafuda.forEach(function(card, i) {
+			if (card.style.visibility !== "hidden") {
+				let x = deckRect.left + (i % 27) * 30;
+				let y = deckRect.top + Math.floor((i + 1) / 28) * 200;
+
+				card.style.left = x + "px";
+				card.style.top = y + "px";
+			}
+		});
+	}
 }
-
-window.addEventListener("resize", resizeGame);
-
-resizeGame();
