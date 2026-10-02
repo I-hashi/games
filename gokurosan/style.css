@@ -171,6 +171,7 @@ table{
 #gameContainer {
 	width: 1600px;
 	height: 900px;
+	overflow: hidden;
 }
 
 @media (max-width: 1000px) {

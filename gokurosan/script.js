@@ -462,7 +462,7 @@ function resizeGame() {
 	let scaleX = window.innerWidth / 1600;
 	let scaleY = window.innerHeight / 900;
 
-	let scale = Math.min(1, scaleX, scaleY);
+	let scale = Math.min(scaleX, scaleY);
 
 	game.style.transform = "scale(" + scale + ")";
 
