@@ -2,11 +2,10 @@ body {
 	background-color: pink;
 }
 
-.all{
+.all {
 	position: relative;
 	width: 1000px;
-	height: 500px;
-	
+	height: 650px;
 }
 
 .pera {
@@ -162,30 +161,14 @@ table{
 	font-size: 50px;
 	border-radius: 20px;
 }
-html, body {
-	margin: 0;
-	padding: 0;
-	overflow: auto;
+
+#gameContainer {
+	width: 1000px;
+	height: 650px;
 }
 
-.all {
-	position: relative;
-	width: 100%;
-	min-height: 500px;
-}
-
-.page {
-	width: 100%;
-}
-
-.gamestage {
-	display: flex;
-	gap: 50px;
-	flex-wrap: wrap;
-}
-
-.players {
-	display: flex;
-	gap: 20px;
-	flex-wrap: wrap;
+@media (max-width: 1000px) {
+	body {
+		overflow-x: hidden;
+	}
 }

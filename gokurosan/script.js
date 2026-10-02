@@ -454,3 +454,18 @@ document.addEventListener("DOMContentLoaded", function() {
 		location.reload();
 	});
 });
+
+function resizeGame() {
+	let gameContainer = document.getElementById("gameContainer");
+
+	let scale = Math.min(
+		1,
+		window.innerWidth / 1000
+	);
+
+	gameContainer.style.zoom = scale;
+}
+
+window.addEventListener("resize", resizeGame);
+
+resizeGame();
