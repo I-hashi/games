@@ -459,16 +459,15 @@ function resizeGame() {
 	let gameContainer = document.getElementById("gameContainer");
 	let game = document.querySelector(".all");
 
-	let scale = Math.min(
-		1,
-		window.innerWidth / 1000,
-		(window.innerHeight - 20) / 800
-	);
+	let scaleX = window.innerWidth / 1600;
+	let scaleY = window.innerHeight / 900;
+
+	let scale = Math.min(1, scaleX, scaleY);
 
 	game.style.transform = "scale(" + scale + ")";
 
-	gameContainer.style.width = (1000 * scale) + "px";
-	gameContainer.style.height = (800 * scale) + "px";
+	gameContainer.style.width = (1600 * scale) + "px";
+	gameContainer.style.height = (900 * scale) + "px";
 }
 
 window.addEventListener("resize", resizeGame);
