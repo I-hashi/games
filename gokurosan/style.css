@@ -2,12 +2,19 @@ body {
 	background-color: pink;
 }
 
-html, body {
-	margin: 0;
-	padding: 0;
+
+html {
+	overflow: hidden;
 	width: 100%;
 	height: 100%;
+}
+
+body {
+	margin: 0;
+	padding: 0;
 	overflow: hidden;
+	width: 100%;
+	height: 100%;
 }
 
 .all {
@@ -177,8 +184,3 @@ table{
 	overflow: hidden;
 }
 
-@media (max-width: 1000px) {
-	body {
-		overflow-x: hidden;
-	}
-}
