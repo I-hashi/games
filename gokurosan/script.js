@@ -222,9 +222,13 @@ function drawcard() {
 		let fieldRect = cardImage.getBoundingClientRect();
 		
 		let movingCard = document.createElement("img");
-				
-		movingCard.src = "../images/playingcards/back.png";
+
 		movingCard.classList.add("card-animation");
+
+		movingCard.style.width = "120px";
+		movingCard.style.height = "160px";
+
+		movingCard.src = "../images/playingcards/back.png";
 		
 		// 山札と同じ位置に置く
 		if (number===27) {

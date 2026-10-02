@@ -180,3 +180,16 @@ table{
 	font-size: 50px;
 	border-radius: 20px;
 }
+
+@media (max-width: 1000px) {
+	/* モバイル・タブレット用 */
+		.button {
+		width: 250px;
+		height: 100px;
+		font-size: 40px;
+	}
+
+	.gamestage {
+		gap: 20px;
+	}
+}
