@@ -482,8 +482,11 @@ function resizeGame() {
 	gameContainer.style.width = (1800 * scale) + "px";
 	gameContainer.style.height = (900 * scale) + "px";
 
-	gameContainer.style.marginLeft = margin + "px";
-	gameContainer.style.marginTop = margin + "px";
+	gameContainer.style.marginLeft =
+		((window.innerWidth - 1800 * scale) / 2) + "px";
+
+	gameContainer.style.marginTop =
+		((window.innerHeight - 900 * scale) / 2) + "px";
 }
 
 window.addEventListener("resize", resizeGame);

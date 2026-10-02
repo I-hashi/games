@@ -13,7 +13,7 @@ html, body {
 
 .all {
 	position: relative;
-	width: 1600px;
+	width: 1800px;
 	height: 900px;
 	transform-origin: top left;
 }
@@ -173,8 +173,9 @@ table{
 }
 
 #gameContainer {
-	width: 1600px;
+	width: 1800px;
 	height: 900px;
 	overflow: hidden;
+	position: relative;
 }
 
