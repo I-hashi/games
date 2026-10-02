@@ -218,10 +218,13 @@ function drawcard() {
 		movingCard.classList.add("card-animation");
 		
 		// 山札と同じ位置に置く
-		if (number>27) {
+		if (number===27) {
+			movingCard.style.left = "50px";
+			movingCard.style.top = "250px";
+		} else if (number>27) {
 			movingCard.style.left = deckRect.left+30*(number-27) + "px";
 			movingCard.style.top = deckRect.top+200 + "px";
-		} else if (number<=27) {
+		} else if (number<27) {
 			movingCard.style.left = deckRect.left+30*number + "px";
 			movingCard.style.top = deckRect.top + "px";
 		}
