@@ -224,17 +224,14 @@ function drawcard() {
 		let movingCard = document.createElement("img");
 		movingCard.classList.add("card-animation");
 
-		let scale = window.gameScale || 1;
-
-		movingCard.style.width = (120 * scale) + "px";
-		movingCard.style.height = (160 * scale) + "px";
-
+		movingCard.style.width = "120px";
+		movingCard.style.height = "160px";
 		movingCard.src = "../images/playingcards/back.png";
 		
 		// 山札と同じ位置に置く
 		if (number===27) {
-			movingCard.style.left = "50px";
-			movingCard.style.top = "250px";
+			movingCard.style.left = deckRect.left + "px";
+			movingCard.style.top = deckRect.top + "px";
 		} else if (number>27) {
 			movingCard.style.left = deckRect.left+30*(number-27) + "px";
 			movingCard.style.top = deckRect.top+200 + "px";
@@ -468,7 +465,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		location.reload();
 	});
 });
-
+/*
 function resizeGame() {
 	let game = document.querySelector(".all");
 
