@@ -34,15 +34,15 @@ html, body {
 
 #yamafuda{
 	position: relative;
-	width: 120px;
-	height: 160px;
+	width: 120%;
+	height: 160%;
 }
 
 #yamafuda img {
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 120px;
+	width: 120%;
 }
 
 .button{
