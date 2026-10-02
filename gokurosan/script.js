@@ -50,7 +50,6 @@ function makeYamafuda() {
 		card.style.position = "fixed";
 		card.style.zIndex = i+2;
 		let playingRect = playingcards.getBoundingClientRect();
-		let playingRect = playingcards.getBoundingClientRect();
 
 		let startX = playingRect.left;
 		let startY = playingRect.top;
@@ -475,12 +474,14 @@ function resizeGame() {
 
 	let scale = Math.min(scaleX, scaleY);
 
-	game.style.transform = "translate(-50%, -50%) scale(" + scale + ")";
+	game.style.transform = "scale(" + scale + ")";
+
+	let width = 1800 * scale;
+	let height = 900 * scale;
+
+	game.style.left = ((window.innerWidth - width) / 2) + "px";
+	game.style.top = ((window.innerHeight - height) / 2) + "px";
 }
-
-window.addEventListener("resize", resizeGame);
-
-resizeGame();
 
 window.addEventListener("resize", resizeGame);
 

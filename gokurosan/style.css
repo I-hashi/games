@@ -24,9 +24,7 @@ html, body {
 	position: absolute;
 	width: 1800px;
 	height: 900px;
-	left: 50%;
-	top: 50%;
-	transform-origin: center center;
+	transform-origin: top left;
 }
 
 .pera {
