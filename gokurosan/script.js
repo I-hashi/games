@@ -466,7 +466,6 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function resizeGame() {
-	let gameContainer = document.getElementById("gameContainer");
 	let game = document.querySelector(".all");
 
 	let margin = 20;
@@ -476,17 +475,13 @@ function resizeGame() {
 
 	let scale = Math.min(scaleX, scaleY);
 
+	let width = 1800 * scale;
+	let height = 900 * scale;
+
 	game.style.transform = "scale(" + scale + ")";
-	game.style.transformOrigin = "top left";
 
-	gameContainer.style.width = (1800 * scale) + "px";
-	gameContainer.style.height = (900 * scale) + "px";
-
-	gameContainer.style.marginLeft =
-		((window.innerWidth - 1800 * scale) / 2) + "px";
-
-	gameContainer.style.marginTop =
-		((window.innerHeight - 900 * scale) / 2) + "px";
+	game.style.left = ((window.innerWidth - width) / 2) + "px";
+	game.style.top = ((window.innerHeight - height) / 2) + "px";
 }
 
 window.addEventListener("resize", resizeGame);

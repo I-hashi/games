@@ -12,7 +12,7 @@ html, body {
 }
 
 .all {
-	position: relative;
+	position: absolute;
 	width: 1800px;
 	height: 900px;
 	transform-origin: top left;
@@ -173,9 +173,10 @@ table{
 }
 
 #gameContainer {
-	width: 1800px;
-	height: 900px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
 	overflow: hidden;
-	position: relative;
 }
-
