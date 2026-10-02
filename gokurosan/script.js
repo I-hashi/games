@@ -88,7 +88,7 @@ function makeYamafuda() {
 					hiku.style.color = "red";
 				}, 800);
 			}
-		}, i * 20);
+		}, i * 40);
 	}
 }
 
