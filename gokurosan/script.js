@@ -48,26 +48,47 @@ function makeYamafuda() {
 
 		card.src = "../images/playingcards/back.png";
 		card.style.visibility = "hidden";
-		card.style.position = "absolute";
+		card.style.position = "fixed";
 		card.style.zIndex = i + 2;
 		card.style.width = "120px";
-		card.style.left = (i % 27) * 30 + "px";
-		card.style.top = Math.floor((i + 1) / 28) * 200 + "px";
+
+		let playingRect = playingcards.getBoundingClientRect();
+
+		let startX = playingRect.left;
+		let startY = playingRect.top;
+
+		let deckRect = cards.getBoundingClientRect();
+
+		let endX = deckRect.left + (i % 27) * 30;
+		let endY = deckRect.top + Math.floor((i + 1) / 28) * 200;
+
+		card.style.left = startX + "px";
+		card.style.top = startY + "px";
 
 		cards.appendChild(card);
 
 		setTimeout(function() {
 			card.style.visibility = "visible";
-		}, i * 80);
+			card.style.transition = "left 0.8s ease, top 0.8s ease";
 
-		if (i === 53) {
-			setTimeout(function() {
+			let deckRect = cards.getBoundingClientRect();
+
+			let newX = deckRect.left + (i % 27) * 30;
+			let newY = deckRect.top + Math.floor((i + 1) / 28) * 200;
+
+			card.style.left = newX + "px";
+			card.style.top = newY + "px";
+
+			if (i === 53) {
 				playingcards.style.visibility = "hidden";
-				cantry = true;
-				hiku.style.backgroundColor = "yellow";
-				hiku.style.color = "red";
-			}, 54 * 80 + 800);
-		}
+
+				setTimeout(function() {
+					cantry = true;
+					hiku.style.backgroundColor = "yellow";
+					hiku.style.color = "red";
+				}, 800);
+			}
+		}, i * 80);
 	}
 }
 
