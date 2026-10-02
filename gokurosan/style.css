@@ -2,7 +2,7 @@ body {
 	background-color: pink;
 }
 
-
+/*
 html, body {
 	margin: 0;
 	padding: 0;
@@ -19,12 +19,12 @@ html, body {
 	height: 100vh;
 	overflow: hidden;
 }
-
+*/
 .all {
 	position: absolute;
-	width: 1800px;
+/*	width: 1800px;
 	height: 900px;
-	transform-origin: top left;
+	transform-origin: top left;*/
 }
 
 .pera {
@@ -181,10 +181,10 @@ table{
 	font-size: 50px;
 	border-radius: 20px;
 }
-
+/*
 @media (max-width: 1000px) {
 	/* モバイル・タブレット用 */
-		.button {
+/*		.button {
 		width: 250px;
 		height: 100px;
 		font-size: 40px;
