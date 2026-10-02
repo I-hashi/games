@@ -2,10 +2,15 @@ body {
 	background-color: pink;
 }
 
+html,body {
+	margin: 0;
+	padding: 0;
+}
+
 .all {
 	position: relative;
 	width: 1000px;
-	height: 650px;
+	min-height: 800px;
 	transform-origin: top left;
 }
 
@@ -165,7 +170,7 @@ table{
 
 #gameContainer {
 	width: 1000px;
-	height: 650px;
+	min-height: 800px;
 }
 
 @media (max-width: 1000px) {

@@ -462,14 +462,15 @@ function resizeGame() {
 	let scale = Math.min(
 		1,
 		window.innerWidth / 1000,
-		window.innerHeight / 650
+		(window.innerHeight - 20) / 800
 	);
 
 	game.style.transform = "scale(" + scale + ")";
 
 	gameContainer.style.width = (1000 * scale) + "px";
-	gameContainer.style.height = (650 * scale) + "px";
+	gameContainer.style.height = (800 * scale) + "px";
 }
 
 window.addEventListener("resize", resizeGame);
+
 resizeGame();
