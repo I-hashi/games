@@ -491,4 +491,5 @@ function resizeGame() {
 window.addEventListener("resize", resizeGame);
 
 resizeGame();
+
 */
