@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="style.css">
+	<title></title>
+</head>
+
+<body>
+	<h1></h1>
+	<div class="all">
+		<div class="page">
+			<div class="cards">
+				<div id="yamafuda"></div>
+				<img id="playingcards" src="../images/playingcards/back.png">
+			</div>
+			<p>
+			<br><br><br><br><br><br><br><br><br><br>
+			</p>
+			<div class="gamestage">
+				<div>
+					<button class="pera" id="pera">カードを引く</button>
+					<p class="c">ccccc</p>
+					<button class="button" id="button">たたく！</button>
+					<p id="text">JOKERがでたらどうnoしようもないのだ</p>
+				</div>
+				<div class="stage">
+					<img id="fuda" src="../images/playingcards/none.png">
+					<img id="handA" src="">
+					<img id="handB" src="">
+					<img id="handC" src="">
+					<img id="myhand" src="">
+				</div>
+				<div class="textbox" id="tumu">重なっている枚数<br>0枚</div>
+				<div class="players">
+					<div class="textbox" id="you">あなた<br>0点</div>
+					<div class="textbox" id="left">左子<br>0点</div>
+					<div class="textbox" id="behind">奥太<br>0点</div>
+					<div class="textbox" id="right">右郎<br>0点</div>
+				</div>
+		</div>
+			<p><br></p>
+		</div>
+		<div id="shadow">
+		<table id="scoreboard">
+			<tr>
+				<th>プレイヤー</th>
+				<th>得点</th>
+			</tr>
+			<tr>
+				<td>あなた</td>
+				<td id="myfinal">0点</td>
+			</tr>
+			<tr>
+				<td>左子</td>
+				<td id="finalB">0点</td>
+			</tr>
+			<tr>
+				<td>奥太</td>
+				<td id="finalC">0点</td>
+				<td><button class="replay" id="replay">もう一度遊ぶ</button></td>
+			</tr>
+			<tr>
+				<td>右郎</td>
+				<td id="finalA">0点</td>
+				<td>近日公開</td>
+			</tr>
+		</table>
+	</div>
+	<script src="script.js"></script>
+</body>
+</html>
