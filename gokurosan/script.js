@@ -465,6 +465,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		location.reload();
 	});
 });
+
 /*
 function resizeGame() {
 	let game = document.querySelector(".all");
