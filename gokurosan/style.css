@@ -98,6 +98,7 @@ html, body {
 .card-animation {
 	position: fixed;
 	width: 120px;
+	height: 160px;
 	z-index: 1000;
 	transition: left 0.8s ease, top 0.8s ease;
 }

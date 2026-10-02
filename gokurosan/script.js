@@ -222,11 +222,12 @@ function drawcard() {
 		let fieldRect = cardImage.getBoundingClientRect();
 		
 		let movingCard = document.createElement("img");
-
 		movingCard.classList.add("card-animation");
 
-		movingCard.style.width = "120px";
-		movingCard.style.height = "160px";
+		let scale = window.gameScale || 1;
+
+		movingCard.style.width = (120 * scale) + "px";
+		movingCard.style.height = (160 * scale) + "px";
 
 		movingCard.src = "../images/playingcards/back.png";
 		
@@ -485,6 +486,8 @@ function resizeGame() {
 
 	game.style.left = ((window.innerWidth - width) / 2) + "px";
 	game.style.top = ((window.innerHeight - height) / 2) + "px";
+
+	window.gameScale = scale;
 }
 
 window.addEventListener("resize", resizeGame);
