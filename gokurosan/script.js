@@ -48,7 +48,7 @@ function makeYamafuda() {
 
 		card.src = "../images/playingcards/back.png";
 		card.style.visibility = "hidden";
-		card.style.position = "fixed";
+		card.style.position = "relative";
 		card.style.zIndex = i + 2;
 		card.style.width = "120px";
 
