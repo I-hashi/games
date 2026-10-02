@@ -404,7 +404,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		makeYamafuda();
 		yamafuda = cards.querySelectorAll("img");
 	},1000);
-	yamafuda = cards.querySelectorAll("img");
+	//yamafuda = cards.querySelectorAll("img");
 	
 	// カードを引く
 	hiku.addEventListener("click", function() {
