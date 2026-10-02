@@ -42,53 +42,32 @@ let teban = 0
 function makeYamafuda() {
 	let cards = document.getElementById("yamafuda");
 	let playingcards = document.getElementById("playingcards");
+
 	for (let i = 0; i < 54; i++) {
 		let card = document.createElement("img");
-		card.style.visibility = "hidden";
 
 		card.src = "../images/playingcards/back.png";
-		card.style.position = "fixed";
-		card.style.zIndex = i+2;
-		let playingRect = playingcards.getBoundingClientRect();
-
-		let startX = playingRect.left;
-		let startY = playingRect.top;
-
-		let endX;
-		let endY;
-
-		endX = cards.getBoundingClientRect().left + (i % 27) * 30;
-		endY = cards.getBoundingClientRect().top + Math.floor((i + 1) / 28) * 200;
-
-		card.style.left = startX + "px";
-		card.style.top = startY + "px";
+		card.style.visibility = "hidden";
+		card.style.position = "absolute";
+		card.style.zIndex = i + 2;
+		card.style.width = "120px";
+		card.style.left = (i % 27) * 30 + "px";
+		card.style.top = Math.floor((i + 1) / 28) * 200 + "px";
 
 		cards.appendChild(card);
+
 		setTimeout(function() {
-
-			
-
-			setTimeout(function() {
-				card.style.visibility = "visible";
-				card.style.transition = "left 0.8s ease, top 0.8s ease";
-				let deckRect = cards.getBoundingClientRect();
-
-				let newX = deckRect.left + (i % 27) * 30;
-				let newY = deckRect.top + Math.floor((i + 1) / 28) * 200;
-
-				card.style.left = newX + "px";
-				card.style.top = newY + "px";
-				if (i === 53) {
-					playingcards.style.visibility = "hidden";
-					setTimeout(function() {
-						cantry = true;
-						hiku.style.backgroundColor = "yellow";
-						hiku.style.color = "red";
-					},800);
-				}
-			}, 20);
-
+			card.style.visibility = "visible";
 		}, i * 80);
+
+		if (i === 53) {
+			setTimeout(function() {
+				playingcards.style.visibility = "hidden";
+				cantry = true;
+				hiku.style.backgroundColor = "yellow";
+				hiku.style.color = "red";
+			}, 54 * 80 + 800);
+		}
 	}
 }
 
