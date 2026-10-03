@@ -80,7 +80,7 @@ function makeYamafuda() {
 			card.style.top = newY + "px";
 
 			if (i === 11) {
-				playingcards.style.visibility = "hidden";
+				//playingcards.style.visibility = "hidden";
 
 				setTimeout(function() {
 					cantry = true;
