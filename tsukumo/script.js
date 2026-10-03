@@ -43,7 +43,7 @@ function makeYamafuda() {
 	let cards = document.getElementById("yamafuda");
 	let playingcards = document.getElementById("playingcards");
 
-	for (let i = 0; i < 54; i++) {
+	for (let i = 0; i < 12; i++) {
 		let card = document.createElement("img");
 
 		card.src = "../images/playingcards/back.png";
