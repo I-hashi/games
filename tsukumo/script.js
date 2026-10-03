@@ -89,7 +89,7 @@ function makeYamafuda() {
 					yamafuda[9].src = cardA
 					yamafuda[10].src = cardB
 					yamafuda[11].src = cardC
-				}, 1800);
+				}, 1300);
 			}
 		}, i * 40);
 	}
