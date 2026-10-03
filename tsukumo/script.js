@@ -83,10 +83,13 @@ function makeYamafuda() {
 				//playingcards.style.visibility = "hidden";
 
 				setTimeout(function() {
-					cantry = true;
-					hiku.style.backgroundColor = "yellow";
-					hiku.style.color = "red";
-				}, 800);
+					let cardA = decidecard();
+					let cardB = decidecard();
+					let cardC = decidecard();
+					yamafuda[9].src = cardA
+					yamafuda[10].src = cardB
+					yamafuda[11].src = cardC
+				}, 1800);
 			}
 		}, i * 40);
 	}
@@ -163,6 +166,60 @@ function loser(makeinu) {
 	}
 }
 
+function decidecard() {
+	if (hiitayo.length !== 54) {
+		let card;
+		let hikinaosi = true;
+		while (hikinaosi) {
+			card = Math.floor(Math.random() * 54) + 1;
+			if (!hiitayo.includes(card)){
+				hiitayo.push(card)
+				hikinaosi = false;
+			}
+		}
+		
+		// 引いた時に何が出るかを決める
+		let image = ["../images/playingcards/"]
+		if (card<=13) {
+			image.push("spade_")
+		} else if (card>13 && card<=26) {
+			image.push("clover_")
+		} else if (card>26 && card<=39) {
+			image.push("heart_")
+		} else if (card>39 && card<=52) {
+			image.push("diamond_")
+		} else if (card===53) {
+			image.push("black_JOKER")
+		} else {
+			image.push("red_JOKER")
+		}
+		if (card<=52) {
+			joker = false;
+			if (card%13===1) {
+				image.push("A")
+			} else if (card%13===11) {
+				image.push("J")
+			} else if (card%13===12) {
+				image.push("Q")
+			} else if (card%13===0) {
+				image.push("K")
+			} else{
+				image.push(String(card%13))
+			}
+			/*if (card%13===5 || card%13===9 || card%13===6 || card%13===3) {
+				battle=true
+			} else {
+				battle=false
+			}
+			*/
+		} else {
+			joker = true;
+		}
+			
+		image.push(".png")
+		return image
+	}
+}
 
 function drawcard() {
 	if (hiitayo.length !== 54) {
@@ -405,6 +462,10 @@ function drawcard() {
 		cards.src = "../images/playingcards/none.png"
 		
 	}
+}
+
+function playcard() {
+
 }
 
 document.addEventListener("DOMContentLoaded", function() {
