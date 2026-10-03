@@ -79,7 +79,7 @@ function makeYamafuda() {
 			card.style.left = newX + "px";
 			card.style.top = newY + "px";
 
-			if (i === 53) {
+			if (i === 11) {
 				playingcards.style.visibility = "hidden";
 
 				setTimeout(function() {
