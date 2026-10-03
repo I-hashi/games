@@ -86,6 +86,7 @@ function makeYamafuda() {
 					let cardA = decidecard();
 					let cardB = decidecard();
 					let cardC = decidecard();
+					console.log(cardA,cardB,cardC)
 					yamafuda[9].src = cardA
 					yamafuda[10].src = cardB
 					yamafuda[11].src = cardC
