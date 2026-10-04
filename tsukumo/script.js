@@ -218,7 +218,8 @@ function decidecard() {
 		}
 			
 		image.push(".png")
-		return image
+		let cardPath = image.join("");
+		return cardPath
 	}
 }
 
