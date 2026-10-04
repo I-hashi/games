@@ -73,7 +73,7 @@ function makeYamafuda() {
 
 			let deckRect = cards.getBoundingClientRect();
 
-			let newX = deckRect.left + (i % 9) * 30 + Math.floor((i / 3) % 3) * 200 + Math.max((i - 9) , 0) * 120;
+			let newX = deckRect.left + (i % 9) * 30 + Math.floor((i / 3) % 3) * 200 + Math.max((i - 9) , 0) * 90;
 			let newY = deckRect.top + Math.floor(i / 9) * 300;
 
 			card.style.left = newX + "px";
