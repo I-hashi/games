@@ -41,9 +41,27 @@ html, body {
 	width: 120px;
 }
 
-.button{
+.buttonQ{
 	color: yellow;
 	background-color: red;
+	width: 120px;
+	height: 120px;
+	font-size: 20px;
+	border-radius: 50px;
+}
+
+.buttonR{
+	color: purple;
+	background-color: blue;
+	width: 120px;
+	height: 120px;
+	font-size: 20px;
+	border-radius: 50px;
+}
+
+.buttonS{
+	color: lightblue;
+	background-color: green;
 	width: 120px;
 	height: 120px;
 	font-size: 20px;
