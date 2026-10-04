@@ -44,9 +44,9 @@ html, body {
 .button{
 	color: yellow;
 	background-color: red;
-	width: 300px;
+	width: 120px;
 	height: 120px;
-	font-size: 50px;
+	font-size: 20px;
 	border-radius: 50px;
 }
 
