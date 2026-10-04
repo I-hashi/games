@@ -51,7 +51,7 @@ html, body {
 }
 
 .buttonR{
-	color: purple;
+	color: green;
 	background-color: blue;
 	width: 120px;
 	height: 180px;
@@ -61,7 +61,7 @@ html, body {
 
 .buttonS{
 	color: lightblue;
-	background-color: green;
+	background-color: purple;
 	width: 120px;
 	height: 180px;
 	font-size: 20px;
