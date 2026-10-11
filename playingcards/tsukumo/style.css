@@ -42,8 +42,8 @@ html, body {
 }
 
 .buttonQ{
-	color: yellow;
-	background-color: red;
+	color: black;
+	background-color: gray;
 	width: 120px;
 	height: 120px;
 	font-size: 20px;
@@ -51,8 +51,8 @@ html, body {
 }
 
 .buttonR{
-	color: lightgreen;
-	background-color: blue;
+	color: black;
+	background-color: gray;
 	width: 180px;
 	height: 120px;
 	font-size: 20px;
@@ -60,8 +60,8 @@ html, body {
 }
 
 .buttonS{
-	color: lightblue;
-	background-color: purple;
+	color: black;
+	background-color: gray;
 	width: 180px;
 	height: 120px;
 	font-size: 20px;

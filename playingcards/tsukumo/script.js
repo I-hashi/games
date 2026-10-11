@@ -1,5 +1,9 @@
 let hiku = document.getElementById("pera");
-let button = document.getElementById("button");
+let buttonA = document.getElementById("buttonA");
+let buttonB = document.getElementById("buttonB");
+let buttonC = document.getElementById("buttonC");
+let buttonD = document.getElementById("buttonD");
+let buttonE = document.getElementById("buttonE");
 let text = document.getElementById("text");
 let cardImage = document.getElementById("fuda");
 let cards = document.getElementById("yamafuda");
@@ -34,11 +38,70 @@ let myscore = 0;
 let scoreA = 0;
 let scoreB = 0;
 let scoreC = 0;
-let cantry = false;
+let canplay = false;
 let otetuki = 0;
 let safe = true;
 let teban = 0
+let cardPathA;
+let cardPathB;
+let cardPathC;
 
+let numberA;
+let numberB;
+let numberC;
+
+let mycardA;
+let mycardB;
+let mycardC;
+
+let cardA;
+let cardB;
+let cardC;
+
+let use
+let usingcard
+
+function buttoncolor(btn,mode) {
+	colors = {
+		buttonABC: {
+			base: "red",
+			text: "yellow"
+		},
+		buttonD: {
+			base: "blue",
+			text: "lightgreen"
+		},
+		buttonE: {
+			base: "purple",
+			text: "pink"
+		}
+	}
+	let btnname
+	if (btn === buttonA || btn === buttonB || btn === buttonC) {
+		btnname = "buttonABC"
+	} else if (btn === buttonD) {
+		btnname = "buttonD"
+	} else {
+		btnname = "buttonE"
+	}
+	if (mode) {
+		btn.style.backgroundColor = colors[btnname].base;
+		btn.style.color = colors[btnname].text;
+		if (btn === buttonA || btn === buttonB || btn === buttonC) {
+			canplay = true
+		} else {
+			candecide = true
+		}
+	} else {
+		btn.style.backgroundColor = "gray";
+		btn.style.color = "black";
+		if (btn === buttonA || btn === buttonB || btn === buttonC) {
+			canplay = false
+		} else {
+			candecide = false
+		}
+	}
+}
 function makeYamafuda() {
 	let cards = document.getElementById("yamafuda");
 	let playingcards = document.getElementById("playingcards");
@@ -55,7 +118,7 @@ function makeYamafuda() {
 		let playingRect = playingcards.getBoundingClientRect();
 
 		let startX = playingRect.left;
-		let startY = playingRect.top;
+		let startY = playingRect.top - 20;
 
 		let deckRect = cards.getBoundingClientRect();
 
@@ -83,13 +146,25 @@ function makeYamafuda() {
 				//playingcards.style.visibility = "hidden";
 
 				setTimeout(function() {
-					let cardA = decidecard();
-					let cardB = decidecard();
-					let cardC = decidecard();
-					console.log(cardA,cardB,cardC)
-					yamafuda[9].src = cardA
-					yamafuda[10].src = cardB
-					yamafuda[11].src = cardC
+					[cardPathA,cardA,numberA] = decidecard();
+					[cardPathB,cardB,numberB] = decidecard();
+					[cardPathC,cardC,numberC] = decidecard();
+					console.log(cardA,cardB,cardC);
+					mycardA = yamafuda[9];
+					mycardB = yamafuda[10];
+					mycardC = yamafuda[11];
+					mycardA.src = cardPathA;
+					mycardB.src = cardPathB;
+					mycardC.src = cardPathC;
+					if (numberA !== 12) {
+						buttoncolor(buttonA,true)
+					}
+					if (numberB !== 12) {
+						buttoncolor(buttonB,true)
+					}
+					if (numberC !== 12) {
+						buttoncolor(buttonC,true)
+					}
 				}, 1300);
 			}
 		}, i * 40);
@@ -219,255 +294,187 @@ function decidecard() {
 			
 		image.push(".png")
 		let cardPath = image.join("");
-		return cardPath
+		let number
+		if (card === 27) { //♡A
+			number = 0
+		} else if (card > 52) { //JOKER
+			number = 12
+		} else if ((card - 1) % 13 > 9) { //絵札
+			number = 11
+		} else {
+			number = card % 13
+		}
+		return [cardPath,card,number]
 	}
 }
 
-function drawcard() {
-	if (hiitayo.length !== 54) {
-		let card;
-		let hikinaosi = true;
-		while (hikinaosi) {
-			card = Math.floor(Math.random() * 54) + 1;
-			if (!hiitayo.includes(card)){
-				hiitayo.push(card)
-				hikinaosi = false;
-			}
-		}
-		
-		// 引いた時に何が出るかを決める
-		let image = ["../images/playingcards/"]
-		if (card<=13) {
-			image.push("spade_")
-		} else if (card>13 && card<=26) {
-			image.push("clover_")
-		} else if (card>26 && card<=39) {
-			image.push("heart_")
-		} else if (card>39 && card<=52) {
-			image.push("diamond_")
-		} else if (card===53) {
-			image.push("black_JOKER")
-		} else {
-			image.push("red_JOKER")
-		}
-		if (card<=52) {
-			joker = false;
-			if (card%13===1) {
-				image.push("A")
-			} else if (card%13===11) {
-				image.push("J")
-			} else if (card%13===12) {
-				image.push("Q")
-			} else if (card%13===0) {
-				image.push("K")
-			} else{
-				image.push(String(card%13))
-			}
-			if (card%13===5 || card%13===9 || card%13===6 || card%13===3) {
-				battle=true
-			} else {
-				battle=false
-			}
-			
-		} else {
-			joker = true;
-		}
-			
-		image.push(".png")
+function drawcard(number) {
+	const drawnCard = decidecard();
+	if (!drawnCard) {
+		return;
+	}
+	const [drawnPath, , drawnNumber] = drawnCard;
+	const playedIndex = Number.isInteger(number) && number >= 0 && number <= 2 ? number : 2;
+	const handCards = [mycardA, mycardB, mycardC];
+	const handPaths = [cardPathA, cardPathB, cardPathC];
+	const handNumbers = [numberA, numberB, numberC];
+	const playingRect = playingcards.getBoundingClientRect();
+	const animations = [];
 
-		let cardPath = image.join("");
-	
-		let deckRect = cards.getBoundingClientRect();
-		let fieldRect = cardImage.getBoundingClientRect();
-		
-		let movingCard = document.createElement("img");
+	for (let sourceIndex = playedIndex + 1; sourceIndex < handCards.length; sourceIndex++) {
+		const sourceRect = handCards[sourceIndex].getBoundingClientRect();
+		const destinationRect = handCards[sourceIndex - 1].getBoundingClientRect();
+		const movingCard = document.createElement("img");
+		movingCard.src = handPaths[sourceIndex];
 		movingCard.classList.add("card-animation");
-
-		movingCard.style.width = "120px";
-		movingCard.style.height = "160px";
-		movingCard.src = "../images/playingcards/back.png";
-		
-		// 山札と同じ位置に置く
-		if (number===27) {
-			movingCard.style.left = deckRect.left + "px";
-			movingCard.style.top = deckRect.top + "px";
-		} else if (number>27) {
-			movingCard.style.left = deckRect.left+30*(number-27) + "px";
-			movingCard.style.top = deckRect.top+200 + "px";
-		} else if (number<27) {
-			movingCard.style.left = deckRect.left+30*number + "px";
-			movingCard.style.top = deckRect.top + "px";
-		}
-		console.log("number =", number);
-		yamafuda[number].style.visibility = "hidden";
+		movingCard.style.left = sourceRect.left + "px";
+		movingCard.style.top = sourceRect.top + "px";
 		document.body.appendChild(movingCard);
-		cantry = false;
-		hiku.style.backgroundColor = "gray"
-		hiku.style.color = "black"
-		
-		// ブラウザに山札の位置を確定させる
-		movingCard.offsetHeight;
-		
-		// 場へ移動
-		movingCard.style.left = fieldRect.left + "px";
-		movingCard.style.top = fieldRect.top + "px";
-		
-		// 0.8秒後に表向きにする
-		setTimeout(function() {
-			movingCard.src = cardPath;
-		}, 800);
-		
-		// アニメーション用カードを消す
-		setTimeout(function() {
-			movingCard.remove();
-			if (number === 0) {
-				number = 53
-			} else {
-				number = number-1
-			}
-			cardImage.src = cardPath;
-			cardImage.style.visibility = "visible";
-			tumare = tumare+1
-			tumu.innerHTML = "重なっている枚数<br>" + tumare + "枚"
-			gokurosan = true;
-			
-			// CPUの手を出す
-			if (battle) {
-				jumban = 2;
-				lose=you;
+		animations.push({
+			card: movingCard,
+			left: destinationRect.left,
+			top: destinationRect.top
+		});
 
-				// 右の手
-				setTimeout(function() {
-					A.src = "../images/hand.png";
-					A.style.zIndex = jumban;
-					if (jumban === 4) {
-						setTimeout(function() {
-							loser(lose)
-						},1000);
-					} else if (jumban === 5) {
-						lose = right;
-						whosescore = scoreA;
-					}
-					jumban = jumban + 1;
-				}, Math.random() * 750);
-		
-				// 左の手
-				setTimeout(function() {
-					B.src = "../images/hand.png";
-					B.style.transform = "rotate(180deg)";
-					B.style.zIndex = jumban;
-					if (jumban === 4) {
-						setTimeout(function() {
-							loser(lose)
-						},1000);
-					} else if (jumban === 5) {
-						lose = left;
-					}
-					jumban = jumban + 1;
-				}, Math.random() * 750);
-		
-				// 奥の手
-				setTimeout(function() {
-					C.src = "../images/hand.png";
-					C.style.transform = "rotate(270deg)";
-					C.style.zIndex = jumban;
-					if (jumban === 4) {
-						setTimeout(function() {
-							loser(lose)
-						},1000);
-					} else if (jumban === 5) {
-						lose = behind;
-					}
-					jumban = jumban + 1;
-				}, Math.random() * 750);
-			// ジョーカー
-			} else if (joker) {
-				setTimeout(function() {
-					if (teban === 0) {
-						myscore = (myscore-tumare)*2
-						you.innerHTML = "あなた<br>" + myscore + "点"
-						finishgokurosan(true)
-					} else if (teban === 1) {
-						scoreB = (scoreB-tumare)*2
-						left.innerHTML = "左子<br>" + scoreB + "点"
-						finishgokurosan(true)
-					} else if (teban === 2) {
-						scoreC = (scoreC-tumare)*2
-						behind.innerHTML = "奥太<br>" + scoreC + "点"
-						finishgokurosan(true)
-					} else {
-						scoreA = (scoreA-tumare)*2
-						right.innerHTML = "右郎<br>" + scoreA + "点"
-						finishgokurosan(true)
-					}
-				},1000);
-			// お手付き
-			} else {
-				safe = true
-				setTimeout(function() {
-					if (safe) {
-						finishgokurosan(false)
-					}
-				},1000);
-				// 右の手
-				otetuki=Math.floor(Math.random() * 20)
-				if (otetuki === 0) {
-					setTimeout(function() {
-						if (safe) {
-							A.src = "../images/hand.png";
-							A.style.zIndex = 2;
-							setTimeout(function() {
-								loser(right)
-							},1000);
-							gokurosan = false;
-							safe = false;
-						}
-					}, Math.random() * 500);
-				}
-				// 左の手
-				otetuki=Math.floor(Math.random() * 20)
-				if (otetuki === 0) {
-					setTimeout(function() {
-						if (safe) {
-							B.src = "../images/hand.png";
-							B.style.transform = "rotate(180deg)";
-							B.style.zIndex = 2;
-							setTimeout(function() {
-								loser(left)
-							},1000);
-							gokurosan = false;
-							safe = false;
-						}
-					}, Math.random() * 500);
-				}
-				// 奥の手
-				otetuki=Math.floor(Math.random() * 20)
-				if (otetuki === 0) {
-					setTimeout(function() {
-						if (safe){
-							C.src = "../images/hand.png";
-							C.style.transform = "rotate(270deg)";
-							C.style.zIndex = 2;
-							setTimeout(function() {
-								loser(behind)
-							},1000);
-							gokurosan = false;
-							safe = false;
-						}
-					}, Math.random() * 500);
-				}
-			}
-				
+		handPaths[sourceIndex - 1] = handPaths[sourceIndex];
+		handNumbers[sourceIndex - 1] = handNumbers[sourceIndex];
+	}
 
-		}, 1100);
+	const rightCard = handCards[2];
+	const rightRect = rightCard.getBoundingClientRect();
+	const newCard = document.createElement("img");
+	newCard.src = "../images/playingcards/back.png";
+	newCard.classList.add("card-animation");
+	newCard.style.left = playingRect.left + "px";
+	newCard.style.top = playingRect.top - 20 + "px";
+	document.body.appendChild(newCard);
+	animations.push({
+		card: newCard,
+		left: rightRect.left,
+		top: rightRect.top,
+		reveal: drawnPath
+	});
+
+	handPaths[2] = drawnPath;
+	handNumbers[2] = drawnNumber;
+
+	for (let index = playedIndex; index < handCards.length; index++) {
+		handCards[index].style.visibility = "hidden";
+	}
+	[cardPathA, cardPathB, cardPathC] = handPaths;
+	[numberA, numberB, numberC] = handNumbers;
+
+	for (const animation of animations) {
+		animation.card.offsetHeight;
+		animation.card.style.left = animation.left + "px";
+		animation.card.style.top = animation.top + "px";
+	}
+	for (let index = playedIndex; index < handCards.length; index++) {
+			handCards[index].src = handPaths[index];
+	setTimeout(function() {
+		for (const animation of animations) {
+			animation.card.remove();
+		}
+		for (let index = playedIndex; index < handCards.length; index++) {
+			handCards[index].style.visibility = "visible";
+		}
+		if (numberA !== 12) {
+			buttoncolor(buttonA,true)
+		}
+		if (numberB !== 12) {
+			buttoncolor(buttonB,true)
+		}
+		if (numberC !== 12) {
+			buttoncolor(buttonC,true)
+		}
+	}, 850);
+}
+}
+function usecard(number) {
+	buttoncolor(buttonA,false)
+	buttoncolor(buttonB,false)
+	buttoncolor(buttonC,false)
+	let mycardRect
+	let itsnumber
+	let fieldRect = cardImage.getBoundingClientRect();
+	
+	let movingCard = document.createElement("img");
+	movingCard.classList.add("card-animation");
+
+	movingCard.style.width = "120px";
+	movingCard.style.height = "160px";
+	
+	// 山札と同じ位置に置く
+	if (number === 0) {
+		mycardRect = mycardA.getBoundingClientRect();
+		movingCard.style.left = mycardRect.left + "px";
+		movingCard.style.top = mycardRect.top + "px";
+		movingCard.src = cardPathA;
+		itsnumber = numberA;
+	} else if (number === 1) {
+		mycardRect = mycardB.getBoundingClientRect();
+		movingCard.style.left = mycardRect.left + "px";
+		movingCard.style.top = mycardRect.top + "px";
+		movingCard.src = cardPathB;
+		itsnumber = numberB;
 	} else {
-		cards.src = "../images/playingcards/none.png"
-		
+		mycardRect = mycardC.getBoundingClientRect();
+		movingCard.style.left = mycardRect.left + "px";
+		movingCard.style.top = mycardRect.top + "px";
+		movingCard.src = cardPathC;
+		itsnumber = numberC;
+	}
+	if (itsnumber === 0 || itsnumber === 2 || itsnumber === 3 || itsnumber === 4 || itsnumber === 9 || itsnumber === 10) {
+		buttoncolor(buttonD,true);
+		buttoncolor(buttonE,true);
+		usingcard = number
 	}
 }
+function playcard(number) {
+	console.log("number =", number);
+	yamafuda[number + 9].style.visibility = "hidden";
+	document.body.appendChild(movingCard);
+	cantry = false;
+	
+	// ブラウザに山札の位置を確定させる
+	movingCard.offsetHeight;
+	
+	// 場へ移動
+	movingCard.style.left = fieldRect.left + "px";
+	movingCard.style.top = fieldRect.top + "px";
+	
+	// 0.8秒後に表向きにする
+	
+	// アニメーション用カードを消す
+	setTimeout(function() {
+		movingCard.remove();
+		cardImage.src = movingCard.src;
+		cardImage.style.visibility = "visible";
+		let plus = itsnumber
+		if (use) {
+			plus = 0
+			if (itsnumber === 0) {
+				tumare = 0
+			} else if (itsnumber === 2) {
+			
+			} else if (itsnumber === 4) {
 
-function playcard() {
-
+			} else if (itsnumber === 9) {
+				tumare = 99
+			} else if (itsnumber === 10) {
+				tumare = tumare - 10
+			}
+		} else {
+			if (itsnumber === 0) {
+				plus = 1
+			} else if (itsnumber === 11) {
+				plus = 10
+			}
+			tumare = tumare + itsnumber
+		}
+		tumu.innerHTML = "現在の数字<br>" + tumare
+		drawcard(number)
+	},1100);
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -480,50 +487,42 @@ document.addEventListener("DOMContentLoaded", function() {
 	},1000);
 	//yamafuda = cards.querySelectorAll("img");
 	
-	// カードを引く
-	hiku.addEventListener("click", function() {
-		if (cantry) {
-			if (teban === 0) {
-				drawcard()
-	
-			} else {
-				text.textContent = "焦りは禁物";
-			}
-	
-		} else {
-			text.textContent = "焦りは禁物";
+	buttonA.addEventListener("click", function() {
+		if (numberA !== 12 && canplay) {
+			playcard(0);
 		}
 	});
-	button.addEventListener("click", function() {
-		safe = true;
-		if (!gokurosan) {
-			text.textContent = "焦りは禁物";
-			return;
-		} else if (battle) {
-	
-			// 自分の手を出す
-			I.src = "../images/myhand.png";
-			I.style.transform = "rotate(90deg)";
-			I.style.zIndex = jumban;
-			if (jumban === 4) {
-				setTimeout(function() {
-					loser(lose)
-				},1000);
-			}
-			jumban = jumban + 1;
-		} else {
-			// お手付き
-			I.src = "../images/myhand.png";
-			I.style.transform = "rotate(90deg)";
-			I.style.zIndex = 2;
-			setTimeout(function() {
-				loser(you)
-			},1000);
-			gokurosan = false;
-			safe = false;
+
+	buttonB.addEventListener("click", function() {
+		if (numberB !== 12 && canplay) {
+			playcard(1);
 		}
-	
 	});
+
+	buttonC.addEventListener("click", function() {
+		if (numberC !== 12 && canplay) {
+			playcard(2);
+		}
+	});
+
+	buttonD.addEventListener("click", function() {
+		if (candecide) {
+			use = true;
+			buttoncolor(buttonD,false);
+			buttoncolor(buttonE,false);
+			playcard(usingcard);
+		}
+	});
+
+	buttonE.addEventListener("click", function() {
+		if (candecide) {
+			use = false;
+			buttoncolor(buttonD,false);
+			buttoncolor(buttonE,false);
+			playcard(usingcard);
+		}
+	});
+
 	replay.addEventListener("click", function() {
 		location.reload();
 	});
